@@ -9,8 +9,8 @@ REM IF ERRORLEVEL 3 SET killmethod=uninstall
 
 :debloat
 CHOICE /C DR /M "[D]ebloat OR [R]ebloat !! ?" 
-IF ERRORLEVEL 1 SET killmethod="disable-user"
-IF ERRORLEVEL 2 SET killmethod="enable" 
+IF ERRORLEVEL 1 SET killmethod="uninstall"
+IF ERRORLEVEL 2 SET killmethod="install-existing" 
 
 
 adb shell pm %killmethod% --user 0 com.google.android.apps.tachyon
@@ -45,7 +45,7 @@ adb shell pm %killmethod% --user 0 com.google.android.apps.googleassistant
 adb shell pm %killmethod% --user 0 com.oem.autotest
 adb shell pm %killmethod% --user 0 com.oneplus.backuprestore.remoteservice
 adb shell pm %killmethod% --user 0 com.oneplus.bttestmode
-adb shell pm uninstall --user 0 com.oneplus.opbugreportlite
+adb shell pm %killmethod% --user 0 com.oneplus.opbugreportlite
 adb shell pm %killmethod% --user 0 com.oneplus.carrierlocation
 adb shell pm %killmethod% --user 0 com.google.android.ims
 adb shell pm %killmethod% --user 0 com.android.carrierdefaultapp
@@ -90,7 +90,7 @@ adb shell pm %killmethod% --user 0 com.android.cellbroadcastreceiver
 adb shell pm %killmethod% --user 0 cn.oneplus.nvbackup
 adb shell pm %killmethod% --user 0 com.android.hotwordenrollment.okgoogle
 adb shell pm %killmethod% --user 0 com.android.hotwordenrollment.xgoogle
-adb shell pm uninstall --user 0 com.oneplus.account
+adb shell pm %killmethod% --user 0 com.oneplus.account
 adb shell pm %killmethod% --user 0 com.oneplus.camera.service
 adb shell pm %killmethod% --user 0 com.oem.oemlogkit
 adb shell pm %killmethod% --user 0 com.oneplus.backuprestore
@@ -119,13 +119,15 @@ adb shell pm %killmethod% --user 0 com.qualcomm.qti.lpa
 adb shell pm %killmethod% --user 0 com.qualcomm.qti.remoteSimlockAuth
 
 adb shell pm %killmethod% --user 0 com.oneplus.providers.media
-adb shell pm uninstall --user 0 com.oneplus.membership
+adb shell pm %killmethod% --user 0 com.oneplus.membership
 adb shell pm %killmethod% --user 0 com.heytap.openid
 adb shell pm %killmethod% --user 0 com.redteamobile.oneplus.roaming
 
-adb shell pm uninstall --user 0 com.qualcomm.qti.devicestatisticsservice
-adb shell pm uninstall --user 0 com.heytap.mcs
+adb shell pm %killmethod% --user 0 com.qualcomm.qti.devicestatisticsservice
+adb shell pm %killmethod% --user 0 com.heytap.mcs
 adb shell pm %killmethod% --user 0 com.redteamobile.virtual.softsim
 
 adb shell pm %killmethod% --user 0 com.android.dreams.basic
 adb shell pm %killmethod% --user 0 com.google.marvin.talkback
+
+adb shell pm %killmethod% --user 0 com.google.config
